@@ -2,7 +2,7 @@
 
 ## Create IAM role
 
-```bash
+```console
 cat myredshiftrole_cli.json
 ```
 
@@ -21,7 +21,7 @@ cat myredshiftrole_cli.json
 }
 ```
 
-```bash
+```console
 aws iam create-role --role-name myredshiftrole_cli --assume-role-policy-document file://myredshiftrole_cli.json
 ```
 
@@ -49,7 +49,7 @@ aws iam create-role --role-name myredshiftrole_cli --assume-role-policy-document
 }
 ```
 
-```bash
+```console
 aws iam attach-role-policy --role-name myredshiftrole_cli --policy-arn "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 
 aws iam list-attached-role-policies --role-name myredshiftrole_cli
@@ -71,13 +71,13 @@ aws iam list-attached-role-policies --role-name myredshiftrole_cli
 
 ## Create Redshift Cluster
 
-```bash
+```console
 aws redshift create-cluster --cluster-identifier redshift-cluster-1 --node-type dc2.large --master-username awsuser --master-user-password Awspassword_2020 --number-of-nodes 2 --iam-roles arn:aws:iam::390993126262:role/myredshiftrole_cli
 ```
 
 ## Create and upload files in S3 bucket
 
-```bash
+```console
 aws s3api create-bucket --bucket yogiadibucket --region ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
 
 aws s3 ls s3://yogiadibucket
@@ -85,7 +85,7 @@ aws s3 ls s3://yogiadibucket
 aws s3 sync . s3://yogiadibucket/
 ```
 
-## Create tales in Redshift and upload data
+## Create tables in Redshift and upload data
 
 ```sql
 create table users(
@@ -207,7 +207,7 @@ ORDER BY total_price desc;
 
 ## Delete Redshift cluster , S3 bucket and IAM role. 
 
-```bash
+```console
 aws redshift delete-cluster --cluster redshift-cluster-1 --skip-final-cluster-snapshot
 
 aws s3 rm s3://yogiadibucket --recursive
