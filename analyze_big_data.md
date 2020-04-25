@@ -9,6 +9,14 @@ aws s3api create-bucket --bucket yogiadibucket --region ap-south-1 --create-buck
 
 ```
 
+## Create a folder in S3 bucket
+
+```console 
+
+aws s3api put-object --bucket yogiadibucket --key MyHiveQueryResults
+
+```
+
 ## Create Key Value Pair
 
 ```console
