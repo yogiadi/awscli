@@ -5,6 +5,7 @@
 ```console
 
 aws s3 mb s3://yogiadibucket
+aws s3api create-bucket --bucket yogiadibucket --region ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
 
 ```
 
