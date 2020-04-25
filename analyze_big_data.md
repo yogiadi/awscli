@@ -39,6 +39,6 @@ aws ec2 create-key-pair --key-name MyKeyPair
 
 ```console
 
-aws emr create-cluster --name "My EMR Cluster" --log-uri s3://myBucket/yogiadibucket --auto-terminate 
+aws emr create-cluster --applications Name=Ganglia Name=Hadoop Name=Hive Name=Hue Name=Mahout Name=Pig Name=Tez --ec2-attributes '{"KeyName":"MyKeyPair","InstanceProfile":"EMR_EC2_DefaultRole","SubnetId":"subnet-0d761541","EmrManagedSlaveSecurityGroup":"sg-0c7f038eb88881fa7","EmrManagedMasterSecurityGroup":"sg-0eed12a66ad5c7dba"}' --service-role EMR_DefaultRole --enable-debugging --release-label emr-5.29.0 --log-uri 's3n://aws-logs-390993126262-ap-south-1/elasticmapreduce/' --name 'My cluster' --instance-groups '[{"InstanceCount":2,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"SizeInGB":32,"VolumeType":"gp2"},"VolumesPerInstance":2}]},"InstanceGroupType":"CORE","InstanceType":"m5.xlarge","Name":"Core Instance Group"},{"InstanceCount":1,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"SizeInGB":32,"VolumeType":"gp2"},"VolumesPerInstance":2}]},"InstanceGroupType":"MASTER","InstanceType":"m5.xlarge","Name":"Master Instance Group"}]' --scale-down-behavior TERMINATE_AT_TASK_COMPLETION --region ap-south-1
 
 ```
